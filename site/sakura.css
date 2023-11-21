@@ -1,4 +1,4 @@
-/* Sakura.css v1.4.1
+/* Sakura.css v1.5.0
  * ================
  * Minimal css theme.
  * Project: https://github.com/oxalorg/sakura/
@@ -6,8 +6,7 @@
 
 html {
   font-size: 62.5%;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-	       "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
 }
 
 body {
@@ -34,11 +33,10 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   line-height: 1.1;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-	       "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
   font-weight: 700;
   margin-top: 3rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0;
   overflow-wrap: break-word;
   word-wrap: break-word;
   -ms-word-break: break-all;
@@ -71,7 +69,7 @@ h6 {
 
 p {
   margin-top: 0px;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
 }
 
 small, sub, sup {
@@ -92,7 +90,7 @@ a:visited {
 }
 
 a:hover {
-  color: #144f5a;
+  color: #982c61;
   border-bottom: 2px solid #4a4a4a;
 }
 
@@ -129,8 +127,9 @@ img, video {
   margin-bottom: 2.5rem;
 }
 
+/* Pre and Code */
 pre {
-  background-color: #1f1f1f;
+  background-color: #f1f1f1;
   display: block;
   padding: 1em;
   overflow-x: auto;
@@ -153,10 +152,12 @@ pre > code {
   font-size: 1em;
 }
 
+/* Tables */
 table {
   text-align: justify;
   width: 100%;
   border-collapse: collapse;
+  margin-bottom: 2rem;
 }
 
 td, th {
@@ -164,6 +165,7 @@ td, th {
   border-bottom: 1px solid #f1f1f1;
 }
 
+/* Buttons, forms and input */
 input, textarea {
   border: 1px solid #4a4a4a;
 }
@@ -176,7 +178,7 @@ textarea {
   width: 100%;
 }
 
-.button, button, input[type=submit], input[type=reset], input[type=button] {
+.button, button, input[type=submit], input[type=reset], input[type=button], input[type=file]::file-selector-button {
   display: inline-block;
   padding: 5px 10px;
   text-align: center;
@@ -188,6 +190,22 @@ textarea {
   border: 1px solid #1d7484;
   cursor: pointer;
   box-sizing: border-box;
+}
+
+.button[disabled], button[disabled], input[type=submit][disabled], input[type=reset][disabled], input[type=button][disabled], input[type=file]::file-selector-button[disabled] {
+  cursor: default;
+  opacity: 0.5;
+}
+
+.button:hover, button:hover, input[type=submit]:hover, input[type=reset]:hover, input[type=button]:hover, input[type=file]::file-selector-button:hover {
+  background-color: #982c61;
+  color: #f9f9f9;
+  outline: 0;
+}
+
+.button:focus-visible, button:focus-visible, input[type=submit]:focus-visible, input[type=reset]:focus-visible, input[type=button]:focus-visible, input[type=file]::file-selector-button:focus-visible {
+  outline-style: solid;
+  outline-width: 2px;
 }
 
 textarea, select, input {
@@ -216,6 +234,64 @@ label, legend, fieldset {
   font-weight: 600;
 }
 
-.nav-active {
-  font-weight: 600;
+/* Modifications */
+
+main {
+  /* To accomodate footer */
+  padding-bottom: 50px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+hr {
+  margin: 1rem 0 3rem;
+}
+
+#post-header {
+  margin-bottom: 2rem;
+}
+
+pre[class^="language-"] {
+  background-color: #1f1f1f;
+  display: block;
+  padding: 1em;
+  overflow-x: auto;
+  margin-top: 0px;
+  margin-bottom: 2.5rem;
+  font-size: 0.9em;
+}
+
+pre[class^="language-"] > code {
+  padding: 0;
+  background-color: transparent;
+  white-space: pre;
+  font-size: 1em;
+}
+
+.blog-entries p {
+  margin-bottom: .5rem;
+}
+
+nav {
+  text-align: center;
+  .nav-active {
+    font-weight: bold;
+  }
+}
+
+/*
+pre.display-math {
+  margin: 0;
+  line-height: 0;
+}
+*/
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #f9f9f9;
 }

@@ -1,10 +1,10 @@
 <post-metadata>
   <post-title>What are my programs made of?</post-title>
   <post-date>On Oct 23, 2023</post-date>
-  <!-- <post-tags>test, post</post-tags> -->
+  <post-tags>pl-theory</post-tags>
 </post-metadata>
 <div id="post-excerpt">
-I want to be part of the solution, and not of the problem.
+I want to be part of the solution, not of the problem.
 </div>
 
 Computer programming is a profession with low barrier to entry and in increasing

@@ -152,6 +152,13 @@ selector = ["#page-title", "#post-title", "nav .nav-active"]
 default = "Compiler Team"
 append = " &mdash; Bruno Flores"
 
+[widgets.insert-projects-list]
+widget = "include"
+
+selector = "#projects-list"
+action = "replace_element"
+file = "templates/projects-list.md"
+
 # Inserts the contents of templates/header.html right before the <main> element
 # There's a variety of actions, including prepend_child and replace_content.
 [widgets.insert-header]
@@ -187,7 +194,7 @@ content_container_selector = "main"
 
 post_header_template = '''
   <div id="post-header">
-    <h1 id="post-title">{{title}}</h1>
+    <h2 id="post-title">{{title}}</h2>
     <small><em>
       <time id="post-date" datetime="{{date}}">{{date}}</time> by Bruno Flores
       {% if tags %}(

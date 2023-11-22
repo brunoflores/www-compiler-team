@@ -49,17 +49,13 @@ digraph {
 }
 </pre>
 
-## Structural induction
+### Structural induction
 
 TODO
 
 Variables are given meaning by *substitution*:
 
 <pre class="display-math">
-\documentclass[preview=true,12pt]{standalone}
-\usepackage{newtx}
-\begin{document}
-
 \begin{enumerate}
 \item $\left[ \it{b} / \it{x}\right] \it{x} = \it{b}$ and $\left[ \it{b} /
 \it{x}\right] \it{y} = \it{y}$ if $\it{x} \neq \it{y}$
@@ -67,6 +63,4 @@ Variables are given meaning by *substitution*:
 \item $\left[ \it{b} / \it{x}\right] \it{o}(a_1; \dots a_n) = o(\left[ b /
 x\right] a_1; \dots \left[ b / x\right] a_n) $
 \end{enumerate}
-
-\end{document}
 </pre>

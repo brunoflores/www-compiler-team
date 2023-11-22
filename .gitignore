@@ -9,3 +9,8 @@ tmp.log
 tmp.dvi
 tmp.aux
 tmp.svg
+
+# Node
+node_modules/
+package-lock.json
+package.json

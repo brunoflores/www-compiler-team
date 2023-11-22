@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cat - > me.tex
-latex me.tex > latex.log
-dvisvgm me.dvi > /dev/null
-cat me.svg
+cat - > tmp.tex
+latex tmp.tex > latex.log
+dvisvgm tmp.dvi > /dev/null
+cat tmp.svg

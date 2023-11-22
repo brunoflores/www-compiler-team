@@ -1,2 +1,11 @@
+# Soupault
 build/*
 .soupault-cache/*
+
+# Latex generation
+latex.log
+tmp.tex
+tmp.log
+tmp.dvi
+tmp.aux
+tmp.svg

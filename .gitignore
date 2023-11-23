@@ -2,6 +2,9 @@
 build/*
 .soupault-cache/*
 
+# A folder I use to cache processed elements
+.scripts-cache/*
+
 # Latex generation
 latex.log
 tmp.tex

@@ -497,3 +497,106 @@ let rec it_list f a =
 </pre>
 
 ### User-defined types
+
+Types are either:
+
+* *product* types,
+* or *sum* types.
+
+#### Product types
+
+Product types are *finite labeled* products of types. They are a generalization
+of cartesian product. Elements of product types are called *records*.
+
+Suppose we want to defined a data structure containing information about
+individuals,
+
+<pre class="language ocaml type">
+let jean = ("Jean", 23)
+</pre>
+
+The problem with such usage of cartesian product is that a function
+<imath>\\texttt{name_of}</imath> returning the name field would have the same
+type as the general first projection for tuples. This type is not precise
+enough. Instead of using cartesian product, we can define a
+<imath>\\texttt{person}</imath> data type,
+
+<pre class="language ocaml type" >
+type person = {name : string; age : int}
+</pre>
+
+The order of appearance of the products components is not relevant: labels are
+sufficient to uniquely identify the components.
+
+##### Extracting products components
+
+The canonical way of extracting product components is *pattern-matching*.
+
+<pre class="language ocaml">
+let age_of {age = n; _} = n
+</pre>
+
+It is also possible to access the value of a single field with the dot operator,
+
+<pre class="language ocaml">
+let _ = jean.age
+</pre>
+
+Labels always refer to the most recently defined type.
+
+##### Parameterized product types
+
+We are able to define parameterized types in order to define *generic* data
+structures.
+
+<pre class="language ocaml type">
+type ('a, 'b) pair = {fst : 'a; snd : 'b}
+</pre>
+
+_Any two type definitions produce different types!_
+
+#### Sum types
+
+A *sum* type is the *finite labeled* disjoint union of several types. A sum type
+definition defines a type as being the union of some other types.
+
+<pre class="language ocaml type">
+type identification =
+  | Name of string
+  | SS of int * int
+</pre>
+
+Some terminology: The type <imath>\\texttt{identification}</imath> is the
+labeled disjoint union of <imath>\\texttt{string}</imath> and
+<imath>\\texttt{int * int}</imath>. The labels <imath>\\texttt{Name}</imath> and
+<imath>\\texttt{SS}</imath> are *injections*. Injections may possess one
+argument or none. The latter case corresponds to *enumerated types*.
+
+##### Recursive types
+
+<pre class="language ocaml">
+type expr = Const of int
+          | Var of string
+          | Plus of args
+          | Mult of args
+          | Minus of args
+          | Div of args
+and args = {arg1 : expr; arg2 : expr}
+</pre>
+
+The two types <imath>\\texttt{expr}</imath> and <imath>\\texttt{args}</imath>
+are simultaneously defined, and <imath>\\texttt{expr}</imath> is recursive since
+its definition refers to <imath>\\texttt{args}</imath> which itself refers to
+<imath>\\texttt{expr}</imath>.
+
+Recursive type definitions should be *well-founded* (possess a non-recursive
+case, or *base case*) in order to work well in a by-value setting.
+
+##### Parameterized sum types
+
+Sum type may also be parameterized.
+
+<pre class="language ocaml type">
+type 'a sequence = Empty
+                 | Sequence of 'a * 'a sequence
+</pre>

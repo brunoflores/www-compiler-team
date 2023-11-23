@@ -456,3 +456,44 @@ argument is itself a <imath>\\texttt{list}</imath>,
 <pre class="language ocaml type">
 function head -> function tail -> head :: tail
 </pre>
+
+The types <imath>\\texttt{list}</imath> and <imath>\\texttt{bool}</imath> are
+*sum types*. They are defined with several alternatives,
+
+* a list is either <imath>\\texttt{[]}</imath> or <imath>\\texttt{::}</imath> of
+  ...
+* a boolean value is either <imath>\\texttt{true}</imath> or
+  <imath>\\texttt{false}</imath>
+
+Sum types are the only types whose values need run-time tests in order to be
+matched by a non-variable pattern.
+
+The cartesian product is a *product* type (only one alternative). Product types
+do not involve run-time tests during pattern-matching. The type of their values
+suffices to indice statically whet their structure is.
+
+#### Functions over lists
+
+The <imath>\\texttt{map}</imath> function demonstrates function as argument,
+list processing, and polymorphism,
+
+<pre class="language ocaml type">
+let rec map f =
+  function [] -> []
+         | head :: tail -> (f head) :: (map f tail)
+</pre>
+
+The following example is a list iterator. It takes a function <imath>f</imath>,
+a base elent <imath>a</imath> and a list <imath>\\texttt{[\$x_1\$; \\dots;
+\$x_n\$]}</imath>. It computes,
+
+<imath>\\texttt{it\\_list}\  f\  a\  [x_1; \\dots; x_n] = f\  (\\dots
+(f\  (f\  a\  x_1)\  x_2)\\dots)\  x_n</imath>
+
+<pre class="language ocaml type">
+let rec it_list f a =
+  function [] -> a
+         | head :: tail -> it_list f (f a head) tail
+</pre>
+
+### User-defined types

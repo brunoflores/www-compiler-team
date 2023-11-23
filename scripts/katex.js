@@ -4,8 +4,9 @@ var input = fs.readFileSync(0);
 var displayMode = process.env.DISPLAY != undefined;
 
 var html = katex.renderToString(String.raw`${input}`, {
-    throwOnError : true,
-    displayMode  : displayMode
+  throwOnError : true,
+  output: "html",
+  displayMode  : false // Inline mode
 });
 
 console.log(html)

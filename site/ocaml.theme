@@ -18,7 +18,7 @@ Operator      = Default
 Interpolation  = { Colour="#C07ABE" }
 
 Keywords = {
-  { Colour="#e3ceab" },
+  { Colour="#c2d1fd", Bold=true },
   { Colour="#dfdfbf" , Bold=true},
   { Colour="#aae3b2" },
   { Colour="#aabfe3" },

@@ -258,7 +258,8 @@ action = "replace_element"
 [widgets.highlight]
 widget = "preprocess_element"
 selector = '*[class^="language-"]'
-command = 'highlight --out-format=html --fragment --inline-css --config-file site/ocaml.theme --style=zenburn --syntax=$(echo $ATTR_CLASS | sed -e "s/language-//")'
+# See http://www.andre-simon.de/doku/highlight/en/theme-samples.php
+command = 'highlight --out-format=html --fragment --inline-css --style=seashell --syntax=$(echo $ATTR_CLASS | sed -e "s/language-//")'
 
 [widgets.line-numbers]
 widget = "preprocess_element"
@@ -273,18 +274,16 @@ command = "date -R"
 parse = true
 after = "insert-footer"
 
-# Widgets "inline-math" and "display-math" allow to use elements
-# <span class="inline-math"> for inline equations and <div class="display-math">
-# for equation blocks.
 [widgets.inline-math]
 widget = "preprocess_element"
-selector = ".inline-math"
-command = "DISPLAY=0 node scripts/katex.js"
-action = "replace_content"
+selector = "imath"
+command = "scripts/katex.sh"
+action = "replace_element"
+parse=true
 
 [widgets.display-math]
 widget = "preprocess_element"
 selector = "pre.display-math"
-# command = "DISPLAY=1 node scripts/katex.js"
 command = "scripts/math.sh"
 action = "replace_element"
+parse = true

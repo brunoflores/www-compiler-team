@@ -1,8 +1,9 @@
 #!/bin/bash
 
-in=$(echo $(</dev/stdin))
+# Read stdin.
+in=$(cat)
 
-uq=$(echo $in | cksum | cut -f 1 -d ' ')
+uq=$(echo "${in}" | cksum | cut -f 1 -d ' ')
 
 file=".scripts-cache/${uq}.katex"
 if [ -f "$file" ]; then
@@ -10,5 +11,5 @@ if [ -f "$file" ]; then
   exit 0
 fi
 
-echo "$in" | node ./scripts/katex.js > $file
+echo "${in}" | node ./scripts/katex.js > $file
 cat $file

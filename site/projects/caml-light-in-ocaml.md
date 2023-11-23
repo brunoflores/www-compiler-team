@@ -412,6 +412,47 @@ These constraints are:
 
 ##### Currying
 
+The currying transformation may be written in Caml under the form of a
+higher-order function,
+
 <pre class="language ocaml type">
 let curry f = function x -> (function y -> (f (x, y)))
+</pre>
+
+And its inverse,
+
+<pre class="language ocaml type">
+let uncurry f = function (x, y) -> f x y
+</pre>
+
+### Lists
+
+Lists in ML are *homogeneous*: a list cannot contain elements of different
+types. ML provides a facility for introducing new types allowing the user to
+define precisely the data structures needed by the program.
+
+Lists are built with two *value constructors*:
+
+* <imath>\\texttt{[]}</imath>, the empty list
+* <imath>\\texttt{::}</imath>, the non-empty list constructor. It takes an
+  element <imath>e</imath> and a list <imath>l</imath>, and builds a new list
+  whose first element (head) is <imath>e</imath> and rest (tail) is
+  <imath>l</imath>.
+
+The special syntax <imath>\\texttt{[\$e_1\$; \$\\dots\$; \$e_n\$]}</imath>
+is equivalent to <imath>e_1 :: (e_2 :: \\dots (e_n :: \\texttt{[]})
+\\dots)</imath>.
+
+An empty list is a "list of anything",
+
+<pre class="language ocaml type">
+[]
+</pre>
+
+The <imath>\\texttt{list}</imath> type is a *recursive* type. The
+<imath>\\texttt{[]}</imath> constructor receives two arguments; the second
+argument is itself a <imath>\\texttt{list}</imath>,
+
+<pre class="language ocaml type">
+function head -> function tail -> head :: tail
 </pre>

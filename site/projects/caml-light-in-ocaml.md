@@ -60,7 +60,7 @@ The functional composition:
 \end{align*}
 </pre>
 
-<pre class="language-ocaml">
+<pre class="language ocaml">
 (function x -> x+1) (2+3)
 </pre>
 
@@ -155,7 +155,7 @@ type <imath>A</imath> a unique member of type <imath>B</imath>.
 
 Functions are values as other values.
 
-<pre class="language-ocaml">
+<pre class="language ocaml type">
 function f -> (function x -> (f (x+1) - 1))
 </pre>
 
@@ -165,13 +165,13 @@ The function above has type <imath>\\texttt{(int -> int) -> (int -> int)}</imath
 
 The following function application,
 
-<pre class="language-ocaml">
+<pre class="language ocaml">
 (function y -> y+1) (1+2)
 </pre>
 
 Can also be written as,
 
-<pre class="language-ocaml">
+<pre class="language ocaml">
 let y = 1+2 in y+1
 </pre>
 
@@ -185,13 +185,13 @@ Local bindings using <imath>\\texttt{let}</imath> also introduct *sharing* of
 The <imath>\\texttt{let}</imath> construct also have a global form for toplevel
 declarations, as in:
 
-<pre class="language-ocaml">
+<pre class="language ocaml type">
 let successor = function x -> x+1
 </pre>
 
 Or even,
 
-<pre class="language-ocaml">
+<pre class="language ocaml type">
 let successor x = x+1
 </pre>
 
@@ -231,7 +231,7 @@ A separate set of floating-point arithmetic operations is provided:
 
 Example:
 
-<pre class="language-ocaml">
+<pre class="language ocaml">
 let newton f epsilon =
   let rec until p change x =
             if p x then x
@@ -333,21 +333,21 @@ exception will be reported if matching does not succeed.
 
 Cases are examined in turn, from top to bottom,
 
-<pre class="language-ocaml">
+<pre class="language ocaml">
 let negate = function true -> false
                     | false -> true
 </pre>
 
 An equivalent definition would be,
 
-<pre class="language-ocaml">
+<pre class="language ocaml">
 let negate = function true -> false
                     | x -> true
 </pre>
 
 Also equivalent,
 
-<pre class="language-ocaml">
+<pre class="language ocaml">
 let negate = function true -> false
                     | _ -> true
 </pre>
@@ -355,26 +355,26 @@ let negate = function true -> false
 As an example of pattern-matching, consider the truth value table of
 implication. These are all equivalent definitions:
 
-<pre class="language-ocaml">
+<pre class="language ocaml">
 let imply = function (true, true) -> true
                    | (true, false) -> false
                    | (false, true) -> true
                    | (false, false) -> true
 </pre>
 
-<pre class="language-ocaml">
+<pre class="language ocaml">
 let imply = function (true, x) -> x
                    | (false, _) -> true
 </pre>
 
-<pre class="language-ocaml">
+<pre class="language ocaml">
 let imply = function (true, false) -> false
                    | _ -> true
 </pre>
 
 Of course, pattern-matching on constants is not limited to booleans,
 
-<pre class="language-ocaml">
+<pre class="language ocaml">
 let is_yes = function "oui" -> true
                     | "si" -> true
                     | "ya" -> true
@@ -389,7 +389,7 @@ defined in ML's type system.
 
 ##### Functional composition
 
-<pre class="language-ocaml">
+<pre class="language ocaml type">
 let compose f g = function x -> f (g x)
 </pre>
 
@@ -412,6 +412,6 @@ These constraints are:
 
 ##### Currying
 
-<pre class="language-ocaml type">
+<pre class="language ocaml type">
 let curry f = function x -> (function y -> (f (x, y)))
 </pre>

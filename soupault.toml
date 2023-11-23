@@ -253,13 +253,11 @@ selector = 'pre.graphviz'
 command = 'dot -Tsvg'
 action = "replace_element"
 
-# Runs the content of <* class="language-*"> elements through a syntax
-# highlighter.
 [widgets.highlight]
 widget = "preprocess_element"
-selector = '*[class^="language-"]'
+selector = "pre.language"
 # See http://www.andre-simon.de/doku/highlight/en/theme-samples.php
-command = 'highlight --out-format=html --fragment --inline-css --style=seashell --syntax=$(echo $ATTR_CLASS | sed -r "s/language-(.*)\s.*/\1/")'
+command = 'highlight --out-format=html --fragment --inline-css --style=seashell --syntax=ocaml'
 
 [widgets.line-numbers]
 widget = "preprocess_element"
@@ -290,7 +288,7 @@ parse = true
 
 [widgets.display-ocaml-type]
 widget = "preprocess_element"
-selector = "pre.language-ocaml.type"
+selector = "pre.language.ocaml.type"
 command = "scripts/ocaml-type.sh"
 action = "append_child"
 parse = true

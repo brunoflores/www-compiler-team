@@ -259,7 +259,7 @@ action = "replace_element"
 widget = "preprocess_element"
 selector = '*[class^="language-"]'
 # See http://www.andre-simon.de/doku/highlight/en/theme-samples.php
-command = 'highlight --out-format=html --fragment --inline-css --style=seashell --syntax=$(echo $ATTR_CLASS | sed -e "s/language-//")'
+command = 'highlight --out-format=html --fragment --inline-css --style=seashell --syntax=$(echo $ATTR_CLASS | sed -r "s/language-(.*)\s.*/\1/")'
 
 [widgets.line-numbers]
 widget = "preprocess_element"
@@ -286,4 +286,11 @@ widget = "preprocess_element"
 selector = "pre.display-math"
 command = "scripts/math.sh"
 action = "replace_element"
+parse = true
+
+[widgets.display-ocaml-type]
+widget = "preprocess_element"
+selector = "pre.language-ocaml.type"
+command = "scripts/ocaml-type.sh"
+action = "append_child"
 parse = true

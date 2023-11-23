@@ -237,7 +237,7 @@ let newton f epsilon =
             if p x then x
             else until p change (change x) in
   let satisfied y = abs (f y) <. epsilon in
-  let improve y = y -. (f y /. (deriv f y epsilon) in
+  let improve y = y -. ((f y) /. (deriv f y epsilon)) in
   until satisfied improve
 </pre>
 
@@ -315,3 +315,103 @@ mathematical cartesian product of types <imath>t_1</imath> and
 <imath>t_2</imath>.
 
 We can build tuples from any values: the tuple value constructor is *generic*.
+
+#### Patterns and pattern-matching
+
+Patterns and pattern-matching are strongly related to types. A *pattern*
+indicates the *shape* of a value.
+
+> Patterns are "values with holes".
+
+A single variable (formal parameter) is a pattern (with no shape specified: it
+matches any value). When a value is *matched against* a pattern, the patten acts
+as a filter. The function body <imath>\\texttt{(function x -> ...)}</imath> does
+(trivial) pattern matching.
+
+Pattern-matching will raise a compiler warning if not exhaustive. A run-time
+exception will be reported if matching does not succeed.
+
+Cases are examined in turn, from top to bottom,
+
+<pre class="language-ocaml">
+let negate = function true -> false
+                    | false -> true
+</pre>
+
+An equivalent definition would be,
+
+<pre class="language-ocaml">
+let negate = function true -> false
+                    | x -> true
+</pre>
+
+Also equivalent,
+
+<pre class="language-ocaml">
+let negate = function true -> false
+                    | _ -> true
+</pre>
+
+As an example of pattern-matching, consider the truth value table of
+implication. These are all equivalent definitions:
+
+<pre class="language-ocaml">
+let imply = function (true, true) -> true
+                   | (true, false) -> false
+                   | (false, true) -> true
+                   | (false, false) -> true
+</pre>
+
+<pre class="language-ocaml">
+let imply = function (true, x) -> x
+                   | (false, _) -> true
+</pre>
+
+<pre class="language-ocaml">
+let imply = function (true, false) -> false
+                   | _ -> true
+</pre>
+
+Of course, pattern-matching on constants is not limited to booleans,
+
+<pre class="language-ocaml">
+let is_yes = function "oui" -> true
+                    | "si" -> true
+                    | "ya" -> true
+                    | "yes" -> true
+                    | _ -> false
+</pre>
+
+#### Functions
+
+The type constructor <imath>\\texttt{->}</imath> is predefied and cannot be
+defined in ML's type system.
+
+##### Functional composition
+
+<pre class="language-ocaml">
+let compose f g = function x -> f (g x)
+</pre>
+
+The type of <imath>\\texttt{compose}</imath> contains no more constraints than
+the ones appearning in the definition: it is the *most general* type compatible
+with these constraints,
+
+<pre class="display-math">
+\ttfamily
+compose : ('a -> 'b) -> ('c -> 'a) -> 'c -> 'b
+</pre>
+
+These constraints are:
+
+* the codomain of <imath>\\texttt{g}</imath> and the domain of
+  <imath>\\texttt{f}</imath> must be the same;
+* <imath>\\texttt{x}</imath> must belong to the domain of
+  <imath>\\texttt{g}</imath>;
+* <imath>\\texttt{compose f g x}</imath> will belong to the codomain of <imath>\\texttt{f}</imath>.
+
+##### Currying
+
+<pre class="language-ocaml type">
+let curry f = function x -> (function y -> (f (x, y)))
+</pre>

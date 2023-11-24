@@ -600,3 +600,15 @@ Sum type may also be parameterized.
 type 'a sequence = Empty
                  | Sequence of 'a * 'a sequence
 </pre>
+
+##### Data constructors and functions
+
+> What is the difference between a sum data constructor and a function?
+
+Sum data constructors with arguments possess a functional type. However, a data
+constructor possesses particular properties that a general function does not. A
+sum data constructor is known to be an *injection*, while a Caml function is a
+general function without further information. A mathematical injection
+<imath>f : A \\rightarrow B</imath> admits an inverse function
+<imath>f^{-1}</imath> from its image <imath>f(A) \\subset B</imath> to
+<imath>A</imath>.

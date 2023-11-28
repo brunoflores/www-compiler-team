@@ -13,7 +13,8 @@ post, I reproduce its abstract syntax, statics and operational semantics.
 
 <div id=generated-toc></div>
 
-ASL is interesting because it is the purely functional kernel of OCaml.
+ASL is interesting because it is the purely functional kernel of OCaml. It even
+allows *polymorphism* with a unification algorithm.
 
 ASL programs are built up from numbers, variables, functional expressions
 (<imath>\\lambda</imath>-abstractions), applications and conditionals. The
@@ -174,3 +175,21 @@ At points like the one above, we don't need the resulting context anymore and
 discard it.
 
 ### Static typing, polymorphism and type synthesis
+
+This is where I learned the most from this book. It suggests that static type
+synthesis be seen as a game, and:
+
+> When learning a game, we must:
+>
+> a. Learn the rules (what is allowed, and what is forbidden);
+> b. Learn a winning strategy
+
+In type synthesis, the rules of the game are a *type system*, and the winning
+strategy is the type checking algorithm.
+
+In ASL, a *type* is either:
+
+* the type Number;
+* or a type variable (<imath>\\alpha,\ \\beta,\ \\dots</imath>);
+* or <imath>\\tau_2\ \\rightarrow\ \\tau_2</imath>, where <imath>\\tau_1</imath>
+  and <imath>\\tau_2</imath> are types.

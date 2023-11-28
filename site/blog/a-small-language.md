@@ -191,7 +191,7 @@ In ASL, a *type* is either:
 
 * the type Number;
 * or a type variable (<imath>\\alpha,\ \\beta,\ \\dots</imath>);
-* or <imath>\\tau_2\ \\rightarrow\ \\tau_2</imath>, where <imath>\\tau_1</imath>
+* or <imath>\\tau_2 \\rightarrow \\tau_2</imath>, where <imath>\\tau_1</imath>
   and <imath>\\tau_2</imath> are types.
 
 In a type, a type variable is an *unknown*, i.e. a type that we are
@@ -223,8 +223,8 @@ variables are also said to be _generic_.
 
 <pre class="display-math">
 \textbf{Example}\quad If $\sigma$ denotes the type scheme $\forall
-\alpha. (\alpha \rightarrow Number) \rightarrow \beta \rightarrow \beta$, then we
-have:
+\alpha. (\alpha \rightarrow Number) \rightarrow \beta \rightarrow \beta$, then
+we have:
 
 \begin{center}
 $FV(\sigma) = \{ \beta \}$
@@ -236,3 +236,50 @@ and
 $BV(\sigma) = \{ \alpha \}$
 \end{center}
 </pre>
+
+A _substitution instance_ <imath>\\sigma'</imath> of a type scheme
+<imath>\\sigma</imath> is the type scheme <imath>S(\\sigma)</imath> where
+<imath>S</imath> is a substitution of types for _free_ type variables appearing
+in <imath>\\sigma</imath>. Renaming of bound type variables may be necessary to
+avoid capture.
+
+A _generic instance_ of a type scheme is obtained by giving more precise values
+to some generic variables, and (possibly) quantifying some of the new type
+variables introduced. The type scheme <imath>\\sigma' = \\forall \\beta_1 \\dots
+\\beta_m. \\tau'</imath> is said to be a _generic instance_ of <imath>\\sigma =
+\\forall \\alpha_1 \\dots \\alpha_n. \\tau</imath> if there exists a
+substitution <imath>S</imath> such that:
+
+* the domain of <imath>S</imath> is included in
+  <imath>\\{ \\alpha_1,\ \\dots\ ,\  \\alpha_n \\}</imath>;
+* <imath>\\tau' = S(\\tau)</imath>;
+* no <imath>\\beta_i</imath> occurs free in <imath>\\sigma</imath>.
+
+The type system is expressed by means of _inference rules_:
+
+* the numerator is called the _premises_;
+* the denominator is called the _conclusion_.
+
+<pre class="display-math">
+\inference{P_1\ \dots\ P_n}{C}
+</pre>
+
+* "If <imath>P_1, \\dots</imath> and <imath>P_n</imath>, then
+  <imath>C</imath>".
+* "In order to prove <imath>C</imath>, it is sufficient to prove <imath>P_1,
+  \\dots</imath> and <imath>P_n</imath>".
+
+In the premises and the conclusions appear _judgments_ having the form:
+
+<pre class="display-math">
+$\Gamma \vdash e : \sigma$
+</pre>
+
+Such a judgment should be read as "under the typing environment
+<imath>\\Gamma</imath>, the expression <imath>e</imath> has type scheme
+<imath>\\sigma</imath>". **Typing environments** are sets of _typing hypotheses_
+of the form <imath>x : \\sigma</imath>, where <imath>x</imath> is an
+identifier name and <imath>\\sigma</imath> is a type scheme:
+
+> **Typing environments** give types to the variables occurring _free_
+> (i.e. unbound) in the expression.

@@ -158,7 +158,7 @@ atom:
     { fun ctx ->
         try binding_depth x ctx, ctx
         with Unbound s ->
-	  failwith @@ Format.sprintf "Unbound identifier: %s" s }
+      	  failwith @@ Format.sprintf "Unbound identifier: %s" s }
 </pre>
 
 What ties everything together is when the "top-most" (parsed) expressions are

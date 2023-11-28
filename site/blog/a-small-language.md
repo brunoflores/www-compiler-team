@@ -193,3 +193,22 @@ In ASL, a *type* is either:
 * or a type variable (<imath>\\alpha,\ \\beta,\ \\dots</imath>);
 * or <imath>\\tau_2\ \\rightarrow\ \\tau_2</imath>, where <imath>\\tau_1</imath>
   and <imath>\\tau_2</imath> are types.
+
+In a type, a type variable is an *unknown*, i.e. a type that we are
+computing. We use <imath>\\tau</imath>, <imath>\\tau'</imath>,
+<imath>\\tau_1</imath>, <imath>\\dots</imath>, as *metavariables* representing
+types.
+
+<pre class="display-math">
+\textbf{Example}\quad $(\alpha \rightarrow Number) \rightarrow \beta
+\rightarrow \beta$\quad is a type.
+</pre>
+
+A _type scheme_ is a type where some variables are distinguished as being
+_generic_: <imath>\\forall \\alpha, \\dots, \\alpha_n.\\tau</imath> where
+<imath>\\tau</imath> is a type.
+
+<pre class="display-math">
+\textbf{Example}\quad $\forall \alpha.(\alpha \rightarrow Number) \rightarrow
+\beta \rightarrow \beta$\quad is a type scheme.
+</pre>

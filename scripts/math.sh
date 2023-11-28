@@ -13,6 +13,7 @@ fi
 echo "\documentclass[preview=true]{standalone}
 \usepackage{amsmath}
 \usepackage{qtree}
+\usepackage{semantic}
 \begin{document}" > .scripts-cache/${uq}.tex
 echo "$in" >> .scripts-cache/${uq}.tex
 echo "\end{document}" >> .scripts-cache/${uq}.tex

@@ -112,12 +112,60 @@ In my implementation of the parser I follow the book and return an abstract
 syntax tree of type <imath>\\texttt{top\\_asl}</imath>. The parser must detect
 unbound identifiers at parse-time.
 
-<pre class="language ocaml">
-top:
-  | EOF
-    { Decl ("it", Const 0) }
-  | LET; x = IDENT; BE; e = expression; SEMIC; EOF
-    { Decl (x, e)  }
-  | e = expression; SEMIC; EOF
-    { Decl ("it", e) }
+Because in my implementation I use OCaml and Menhir for parsing generation, I
+must choose a slightly different approach than what's used in the book.
+
+With a binding context represented by a list of variable names, and given a
+recursive function that looks for the position of the first occurrence
+of a variable name in the context,
+
+<pre class="">
+binding_depth s n
+         [] = raise Unbound
+         head :: tail = if s=head then Var n
+                        else binding_depth s (n+1) tail
 </pre>
+
+The parser (Menhir) specification represents ASL expressions as a function from
+context to parsed expression and a new context
+(<imath>\\texttt{ctx} \\rightarrow \\texttt{asl} \\times
+\\texttt{ctx}</imath>). That allows us to parse a
+<imath>\\lambda\\text{-abstraction}</imath> as a *function* that, when
+applied to a binding context, will add the binder to that context and then apply
+the (parsed) abstraction body to this extended context (recursively):
+
+<pre class="language ocaml">
+expr:
+  | LAMBDA; x = IDENT; DOT; e = expr
+    { fun ctx ->
+        let e', ctx' = e (x :: ctx) in
+        Abs (x, e'), ctx' }
+</pre>
+
+At the leafs of this tree, where we try to parse <imath>\\texttt{IDENT
+x}</imath> for some string <imath>\\texttt{x}</imath>, we want to return
+<imath>\\texttt{Var n}</imath> for some
+<imath>\\texttt{n}</imath> if the binder for <imath>\\texttt{x}</imath>
+exists. We simply call <imath>\\texttt{binding\\_depth}</imath> in the given
+context:
+
+<pre class="language ocaml">
+atom:
+  | x = IDENT
+    { fun ctx ->
+        try binding_depth x ctx, ctx
+        with Unbound s ->
+	  failwith @@ Format.sprintf "Unbound identifier: %s" s }
+</pre>
+
+What ties everything together is when the "top-most" (parsed) expressions are
+applied to the global initial context, like so:
+
+<pre class="language ocaml">
+expression:
+  | e = expr
+    { let e', _ = e !Sem.global_env in e' }
+</pre>
+
+At points like this, we don't need the resulting context anymore, so it is
+discarded.

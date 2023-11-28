@@ -23,11 +23,7 @@ ASL programs are built up from numbers, variables, functional expressions
                |&\  \mathtt{IDENT} \\
                |&\  \mathtt{"if"\ Expr\ "then"\ Expr\ "else"\ Expr\ "fi"} \\
                |&\  \mathtt{"("\ Expr\ ")"} \\
-               |&\  \mathtt{"\backslash"\ IDENT\ "."\ Expr} \\
-\\
-Type      ::=&\  BasicType \\
-            |&\  Type\  \texttt{->}\  Type \\
-            |&\  Type\  \texttt{*}\  Type
+               |&\  \mathtt{"\backslash"\ IDENT\ "."\ Expr}
 \end{align*}
 </pre>
 
@@ -110,4 +106,18 @@ The tokens of this language are:
                  |&\ \mathtt{INT\ of\ int}\
                  |\  \mathtt{IDENT\ of\ string}
 \end{align*}
+</pre>
+
+In my implementation of the parser I follow the book and return an abstract
+syntax tree of type <imath>\\texttt{top\\_asl}</imath>. The parser must detect
+unbound identifiers at parse-time.
+
+<pre class="language ocaml">
+top:
+  | EOF
+    { Decl ("it", Const 0) }
+  | LET; x = IDENT; BE; e = expression; SEMIC; EOF
+    { Decl (x, e)  }
+  | e = expression; SEMIC; EOF
+    { Decl ("it", e) }
 </pre>

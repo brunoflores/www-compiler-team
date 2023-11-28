@@ -167,5 +167,5 @@ expression:
     { let e', _ = e !Sem.global_env in e' }
 </pre>
 
-At points like this, we don't need the resulting context anymore, so it is
-discarded.
+At points like the one above, we don't need the resulting context anymore, so it
+is discarded.

@@ -134,7 +134,8 @@ context to parsed expression and a new context
 \\texttt{ctx}</imath>). That allows us to parse a
 <imath>\\lambda\\text{-abstraction}</imath> as a *function* that, when
 applied to a binding context, will add the binder to that context and then apply
-the (parsed) abstraction body to this extended context (recursively):
+the (parsed) abstraction body to this extended context. The resulting expression
+and context are returned:
 
 <pre class="language ocaml">
 expr:
@@ -169,7 +170,7 @@ expression:
     { let e', _ = e !Sem.global_env in e' }
 </pre>
 
-At points like the one above, we don't need the resulting context anymore, so it
-is discarded.
+At points like the one above, we don't need the resulting context anymore and
+discard it.
 
 ### Static typing, polymorphism and type synthesis

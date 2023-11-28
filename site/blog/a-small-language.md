@@ -11,6 +11,8 @@ simple language called ASL: A Small Language. It is the
 post, I reproduce its abstract syntax, statics and operational semantics.
 </div>
 
+<div id=generated-toc></div>
+
 ASL is interesting because it is the purely functional kernel of OCaml.
 
 ASL programs are built up from numbers, variables, functional expressions
@@ -169,3 +171,5 @@ expression:
 
 At points like the one above, we don't need the resulting context anymore, so it
 is discarded.
+
+### Static typing, polymorphism and type synthesis

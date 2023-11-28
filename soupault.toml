@@ -206,23 +206,25 @@ post_header_template = '''
   </div>
 '''
 
-# Inserts a table of contents generated from page headings.
+# Inserts a table of contents generated from page headings <h1> to <h6>.
 [widgets.table-of-contents]
 # exclude_path_regex = '/index(.*)'
 
 widget = "toc"
 selector = "#generated-toc"
 
-min_level = 2
+min_level = 3
+max_level = 6
+
+ignore_heading_selectors = [".notoc"]
 
 toc_list_class = "toc"
 toc_class_levels = false
 
 valid_html = true
+numbered_list = false
 
-numbered_list = true
-
-heading_links = true
+heading_links = false
 heading_link_text = "→ "
 heading_link_class = "here"
 

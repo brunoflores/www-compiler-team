@@ -283,3 +283,77 @@ identifier name and <imath>\\sigma</imath> is a type scheme:
 
 > **Typing environments** give types to the variables occurring _free_
 > (i.e. unbound) in the expression.
+
+The typing environment is managed as a _stack_. In the presentation of the type
+system we represent this fact by _removing_ the typing hypothesis concerning an
+identifier named <imath>x</imath> (if it exists) before adding a new typing
+hypothesis concerning <imath>x</imath>.
+
+We write <imath>\\Gamma - \\Gamma(x)</imath> for the set of typing hypothesis
+obtained from <imath>\\Gamma</imath> by removing the typing hypothesis
+concerning <imath>x</imath> (if it exists).
+
+<pre class="display-math">
+\begin{gather*}
+\inference{}{
+  \Gamma \vdash \texttt{Const}\ n : \text{Number}
+}[(NUM)]
+
+\\ \\ \\
+
+\inference{}{
+  \Gamma \cup \{x : \sigma\} \vdash \texttt{Var}\ x : \sigma
+}[(TAUT)]
+
+\\ \\ \\
+
+\inference{
+  \Gamma \vdash e : \sigma \qquad \sigma' = \text{GenInstance}(\sigma)
+}
+{
+  \Gamma \vdash e : \sigma'
+}[(INST)]
+
+\\ \\ \\
+
+\inference{
+  \Gamma \vdash e : \sigma \qquad \alpha \notin FV(\Gamma)
+}{
+  \Gamma \vdash e : \forall \alpha. \sigma
+}[(GEN)]
+
+\\ \\ \\
+
+\inference{
+  \Gamma \vdash e_1 : \text{Number} \qquad \Gamma \vdash e_2 : \tau \qquad
+  \Gamma \vdash e_3 : \tau
+}{
+  \Gamma \vdash \texttt{(if $e_1$ then $e_2$ else $e_3$ fi)} : \tau
+}[(IF)]
+
+\\ \\ \\
+
+\inference{
+  \Gamma \vdash e_1 : \tau \rightarrow \tau' \qquad \Gamma \vdash e_2 : \tau
+}{
+  \Gamma \vdash (e_1\ e_2) : \tau'
+}[(APP)]
+
+\\ \\ \\
+
+\inference{
+  (\Gamma - \Gamma(x)) \cup \{x : \tau\} \vdash e : \tau')
+}{
+  \Gamma \vdash (\lambda x.\ e) : \tau \rightarrow \tau'
+}[(ABS)]
+
+\\ \\ \\
+
+\inference{
+  \Gamma \vdash e : \sigma \qquad (\Gamma - \Gamma(x)) \cup \{x : \sigma\}
+  \vdash e' : \tau
+}{
+  \Gamma \vdash (\lambda x.\ e')\ e : \tau
+}[(LET)]
+\end{gather*}
+</pre>

@@ -212,3 +212,27 @@ _generic_: <imath>\\forall \\alpha, \\dots, \\alpha_n.\\tau</imath> where
 \textbf{Example}\quad $\forall \alpha.(\alpha \rightarrow Number) \rightarrow
 \beta \rightarrow \beta$\quad is a type scheme.
 </pre>
+
+We use <imath>\\sigma,\ \\sigma',\ \\sigma_1,\ \\dots</imath> as metavariables
+representing type schemes. We write <imath>FV(\\sigma)</imath> for the set of
+_unknowns_ occurring in the type scheme <imath>\\sigma</imath>. Unknowns are
+also called _free variables_ (not bound by a <imath>\\forall</imath>
+quantifier). We also write <imath>BV(\\sigma)</imath> for the set of type
+variables occurring in <imath>\\sigma</imath> which are not free. Bound type
+variables are also said to be _generic_.
+
+<pre class="display-math">
+\textbf{Example}\quad If $\sigma$ denotes the type scheme $\forall
+\alpha. (\alpha \rightarrow Number) \rightarrow \beta \rightarrow \beta$, then we
+have:
+
+\begin{center}
+$FV(\sigma) = \{ \beta \}$
+\end{center}
+
+and
+
+\begin{center}
+$BV(\sigma) = \{ \alpha \}$
+\end{center}
+</pre>

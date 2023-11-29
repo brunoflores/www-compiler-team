@@ -357,3 +357,90 @@ concerning <imath>x</imath> (if it exists).
 }[(LET)]
 \end{gather*}
 </pre>
+
+Let us write a new set of inference rules that we will read as an algorithm:
+
+Any numeric constant is of type Number:
+
+<pre class="display-math">
+\inference{}{
+  \Gamma \vdash \texttt{Const}\ n : \text{Number}
+}[(NUM)]
+</pre>
+
+The types of identifiers are obtained by taking the generic instances of
+type schemes appearing in the typing environment:
+
+<pre class="display-math">
+\inference{
+  \tau = \text{GenInstance($\sigma$)}
+}
+{
+  \Gamma \cup \{x : \sigma\} \vdash \texttt{Var}\ x : \tau
+}[(INST)]
+</pre>
+
+The <imath>\\text{(INST)}</imath> rule is implemented by:
+
+1. taking as <imath>\\tau</imath> the "most general generic instance" of
+   <imath>\\sigma</imath> that is type;
+2. making <imath>\\tau</imath> more specific by _unification_ when encountering
+   equality constraints.
+
+As an example of equality constraint between the types of two expressions,
+typing a conditional requires the test part to be of type
+<imath>\\text{Number}</imath>, and both alternatives to be of the same type
+<imath>\\tau</imath>.
+
+<pre class="display-math">
+\inference{
+  \Gamma \vdash e_1 : \text{Number} \qquad \Gamma \vdash e_2 : \tau \qquad
+  \Gamma \vdash e_3 : \tau
+}
+{
+  \Gamma \vdash \texttt{(if $e_1$ then $e_2$ else $e_3$ fi)} : \tau
+}[(COND)]
+</pre>
+
+Typing an application produces also equality constraints that are to be solved
+by unification:
+
+<pre class="display-math">
+\inference{
+  \Gamma \vdash e_1 : \tau \rightarrow \tau' \qquad \Gamma \vdash e_2 : \tau
+}
+{
+  \Gamma \vdash (e_1\ e_2) : \tau'
+}[(APP)]
+</pre>
+
+Typing an abstraction "pushes" a typing hypothesis for the abstracted
+identifier: unification will make it more precise during the typing of the
+abstraction body:
+
+<pre class="display-math">
+\inference{
+  (\Gamma - \Gamma (x)) \cup \{x : \forall.\ \tau\} \vdash e : \tau'
+}
+{
+  \Gamma \vdash (\lambda x.\ e) : \tau \rightarrow \tau'
+}[(ABS)]
+</pre>
+
+Typing a <imath>\\texttt{let}</imath> construct involves a generalization step:
+we generalize as much as possible:
+
+<pre class="display-math">
+\inference{
+  \Gamma \vdash e : \tau' \qquad \{\alpha_1, \dots, \alpha_n\} =
+  FV(\tau') - FV(\Gamma) \qquad (\Gamma - \Gamma (x)) \cup \{x : \forall a_1 \dots
+  a_n.\ \tau'\} \vdash e' : \tau
+}
+{
+  \Gamma \vdash (\lambda x.\ e')\ e : \tau
+}[LET]
+</pre>
+
+> This set of inference rules represents an algorithm because there is exactly
+> one conclusion for each syntactic ASL construct (giving priority to the
+> <imath>\\text{(LET)}</imath> rule over the regular application rule).

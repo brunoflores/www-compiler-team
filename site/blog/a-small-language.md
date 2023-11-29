@@ -444,3 +444,7 @@ we generalize as much as possible:
 > This set of inference rules represents an algorithm because there is exactly
 > one conclusion for each syntactic ASL construct (giving priority to the
 > <imath>\\text{(LET)}</imath> rule over the regular application rule).
+
+The algorithm is _syntax directed_ since, for a given expression, a type
+deduction for that expression uses exactly one rule per sub-expression. **The
+deduction possesses the same structure as the expression**.

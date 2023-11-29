@@ -304,3 +304,8 @@ footer {
 svg {
   width: 100%;
 }
+
+/* See https://katex.org/docs/font.html */
+.katex {
+  font-size: 1.1em;
+}

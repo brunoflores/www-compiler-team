@@ -104,6 +104,11 @@ Formally, each schema represents the infinite set of _concrete rules_ that can
 be obtained by replacing each meta-variable consistently by all phrases from the
 appropriate syntactic category.
 
+Yet another definition of the same set of terms in a more "concrete" style that
+gives an explicit procedure for _generating_ the element of
+<imath>\\mathcal{T}</imath>:
+
+
 <pre class="display-math">
 Definition [Terms, concretely]: For each natural number $i$, define a set
 $\text{S}_i$ as follows:
@@ -112,9 +117,9 @@ $\text{S}_i$ as follows:
 \text{S}_0     =&\ \varnothing \\
 \text{S}_{i+1} =&\ \qquad \texttt{\{true, false, 0\}} \\
          &\ \cup \quad \texttt{\{succ t$_1$, pred t$_1$, iszero t$_1$ | t$_1$
-                        $\in$}\ \text{S$_i$} \texttt{\}} \\
+                        $\in$}\ \text{S}_1 \texttt{\}} \\
          &\ \cup \quad \texttt{\{if t$_1$ then t$_2$ else t$_3$ | t$_1$, t$_2$,
-         t$_3$ $\in$} \text{S$_i$} \texttt{\}}. \\ \\
+         t$_3$ $\in$}\ \text{S}_i \texttt{\}}. \\ \\
 
 \text{Finally, let} \\
 

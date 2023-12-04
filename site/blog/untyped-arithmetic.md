@@ -36,6 +36,9 @@ symbol above is a _meta-variable_ ranging over _terms_.
 The grammar above is a compact notation for the following inductive definition:
 
 <pre class="display-math">
+Definition [Terms, inductively]: The set of \textit{terms} is the smallest set
+$\mathcal{T}$ such that
+
 \begin{enumerate}
   \item \texttt{\{true, false, 0\}} $\subseteq$ $\mathcal{T}$;
   \item if\ \texttt{t$_1$} $\in$ $\mathcal{T}$,\ then\ \texttt{\{succ t$_1$,
@@ -44,4 +47,52 @@ pred t$_1$, iszero t$_1$\}} $\subseteq$ $\mathcal{T}$;
   $\mathcal{T}$,\ and\ \texttt{t$_3$} $\in$ $\mathcal{T}$,\ then\ \texttt{if t$_1$
   then t$_2$ else t$_3$} $\in$ $\mathcal{T}$.
 \end{enumerate}
+</pre>
+
+Another way is to use two-dimensional _inference rules_:
+
+<pre class="display-math">
+Definition [Terms, by inference rules]: The set of terms is defined by the
+following rules:
+\begin{gather*}
+\inference{}{
+  \texttt{true} \in \mathcal{T}
+}[]
+\qquad
+\inference{}{
+  \texttt{false} \in \mathcal{T}
+}[]
+\qquad
+\inference{}{
+  \texttt{0} \in \mathcal{T}
+}[]
+\\ \\
+\inference{
+  \texttt{t$_1$} \in \mathcal{T}
+}{
+  \texttt{succ t$_1$} \in \mathcal{T}
+}[]
+\qquad
+\inference{
+  \texttt{t$_1$} \in \mathcal{T}
+}{
+  \texttt{pred t$_1$} \in \mathcal{T}
+}[]
+\qquad
+\inference{
+  \texttt{t$_1$} \in \mathcal{T}
+}{
+  \texttt{iszero t$_1$} \in \mathcal{T}
+}[]
+\\ \\
+\inference{
+  \texttt{t$_1$} \in \mathcal{T}
+  \quad
+  \texttt{t$_2$} \in \mathcal{T}
+  \quad
+  \texttt{t$_3$} \in \mathcal{T}
+}{
+  \texttt{if t$_1$ then t$_2$ else t$_3$} \in \mathcal{T}
+}[]
+\end{gather*}
 </pre>

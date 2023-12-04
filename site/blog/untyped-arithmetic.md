@@ -126,3 +126,20 @@ $\text{S}_i$ as follows:
 \text{S} =& \bigcup_i{S_i}.
 \end{align*}
 </pre>
+
+The <imath>depth(\\texttt{t})</imath> is the smallest <imath>i</imath> such that
+<imath>\\texttt{t} \\in \\text{S}_i</imath> according to the definition above:
+
+<pre class="display-math">
+\begin{alignat*}{2}
+& depth(\texttt{true}) &&= 1 \\
+& depth(\texttt{false}) &&= 1 \\
+& depth(\texttt{0}) &&= 1 \\
+& depth(\texttt{succ t$_1$}) &&= depth(\texttt{t$_1$}) + 1 \\
+& depth(\texttt{pred t$_1$}) &&= depth(\texttt{t$_1$}) + 1 \\
+& depth(\texttt{iszero t$_1$}) &&= depth(\texttt{t$_1$}) + 1 \\
+& depth(\texttt{if t$_1$ then t$_2$ else t$_3$}) &&=
+    \text{max}(depth(\texttt{t$_1$}),\ depth(\texttt{t$_2$}),\
+    depth(\texttt{t$_3$})) + 1
+\end{alignat*}
+</pre>

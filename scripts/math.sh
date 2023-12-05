@@ -12,9 +12,18 @@ fi
 
 echo "\documentclass[preview=true]{standalone}
 \usepackage{amsmath}
+\usepackage{amsthm}
 \usepackage{qtree}
 \usepackage{semantic}
 \usepackage{amssymb}
+
+\usepackage[dvipsnames]{xcolor}
+\newcommand{\graybox}[1]{
+  \colorbox{lightgray}{#1}
+}
+
+\newtheorem*{theorem}{Theorem}
+
 \begin{document}" > .scripts-cache/${uq}.tex
 echo "$in" >> .scripts-cache/${uq}.tex
 echo "\end{document}" >> .scripts-cache/${uq}.tex

@@ -160,3 +160,17 @@ _someone_, _everything_, _something_.
 10. Nobody likes a sore loser: <imath>\\forall x.\ (S(x) \\rightarrow \\neg
     \\exists y.\ L(y,x))</imath>. To say that nobody likes <imath>x</imath>, we
     write <imath>\\neg (\\text{somebody likes }x)</imath>.
+
+### Equivalences Involving Quantifiers
+
+**Quantifier Negation laws**
+
+<pre class="display-math">
+\begin{gather*}
+\neg \exists x. P(x)\quad \text{is equivalent to}\quad \forall x. \neg P(x). \\
+\neg \forall x. P(x)\quad \text{is equivalent to}\quad \exists x. \neg P(x).
+\end{gather*}
+</pre>
+
+> We can often re-express a negative statement as an equivalent, but easier to
+> understand, positive statement.

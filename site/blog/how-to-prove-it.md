@@ -117,3 +117,35 @@ true. Thus, anything that is an element of (A $\cup$ B) $\setminus$ B must be an
 element of A, so (A $\cup$ B) $\setminus$  B $\subseteq$ A.
 \end{proof}
 </pre>
+
+### Quantifiers
+
+We often want to say either that <imath>P(x)</imath> is true for _every_ value
+of <imath>x</imath> or that it is true for _at least one_ value of <imath>x</imath>.
+
+<imath>\\boldsymbol{\\rightarrow}</imath> When the truth set of
+<imath>P(x)</imath> is equal to <imath>U</imath>, we say
+<imath>\\forall x. P(x)</imath>.
+
+<imath>\\boldsymbol{\\rightarrow}</imath> When the truth set is not
+<imath>\\varnothing</imath>, we say <imath>\\exists x. P(x)</imath>.
+
+When translating an English statement into symbols, look for words _everyone_,
+_someone_, _everything_, _something_.
+
+1. Someone didn't do the homework: <imath>\\exists x.\ \\neg P(x).</imath>
+2. Everything in that store is either overpriced or poorly made:
+   <imath>\\forall x.\ O(x) \\vee PM(x)</imath>.
+3. Nobody's perfect: <imath>\\forall x.\ \\neg P(x)</imath>.
+4. Susan likes everyone who dislikes Joe: Let <imath>j</imath> stand for Joe,
+   and <imath>s</imath> stand for Susan:
+   <imath>\\forall x.\ (\\neg L(x, j) \\rightarrow L(s, x))</imath>.
+5. <imath>A \\subseteq B</imath>:
+   <imath>\\forall x.\ (x \\in A \\rightarrow x \\in B)</imath>.
+6. <imath>A \\cap B \\subseteq B \\setminus C</imath>:
+   <imath>\\forall x.\ [(x \\in A \\wedge x \\in B) \\rightarrow (x \\in B \\wedge
+   x \\notin C)]</imath>.
+7. Some students are married: Let <imath>S(x)</imath> stand for
+   "<imath>x</imath> is a student". Let <imath>M(x,y)</imath> stand for "x is
+   married to y". We can now represent the entire statement by the formula:
+   <imath>\\exists x.\ (S(x) \\wedge \\exists y.\ M(x, y)))</imath>.

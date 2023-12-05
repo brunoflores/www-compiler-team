@@ -143,3 +143,35 @@ The <imath>depth(\\texttt{t})</imath> is the smallest <imath>i</imath> such that
     depth(\texttt{t$_3$})) + 1
 \end{alignat*}
 </pre>
+
+### Evaluation
+
+<pre class="display-math">
+\begin{alignat*}{3}
+& \textit{Syntax} &&& \\
+& \texttt{t} ::= &&& \qquad \textit{terms:} \\
+&&& \graybox{\texttt{true}} & \qquad \textit{constant true} \\
+&&& \graybox{\texttt{false}} & \qquad \textit{constant false} \\
+&&& \texttt{if t then t else t} & \qquad \textit{conditional} \\
+\\
+& \texttt{v} ::= &&& \qquad \textit{values:} \\
+&&& \texttt{true} & \qquad \textit{true value} \\
+&&& \texttt{false} & \qquad \textit{false value} \\
+\end{alignat*}
+\begin{alignat*}{3}
+& \textit{Evaluation} &&& \\
+& \graybox{
+    \inference{
+      \texttt{t$_1$ $\rightarrow$ t$_1'$}
+    }{
+      \begin{array}{@{}c@{}}
+      \texttt{if t$_1$ then t$_2$ else t$_3$} \\
+      \rightarrow \texttt{if t$_1'$ then t$_2$ else t$_3$}
+      \end{array}
+    }} &&& \\
+\end{alignat*}
+</pre>
+
+<pre class="display-math">
+\boxed{\texttt{t $\rightarrow$ t$'$}}
+</pre>

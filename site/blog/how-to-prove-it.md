@@ -149,3 +149,14 @@ _someone_, _everything_, _something_.
    "<imath>x</imath> is a student". Let <imath>M(x,y)</imath> stand for "x is
    married to y". We can now represent the entire statement by the formula:
    <imath>\\exists x.\ (S(x) \\wedge \\exists y.\ M(x, y)))</imath>.
+8. All parents are married: Let <imath>P(x,y)</imath> stand for
+   "<imath>x</imath> is a parent of <imath>y</imath>".
+   <imath>\\exists y.\ P(x,y)</imath> means that "<imath>x</imath> is a
+   parent". Statement is <imath>\\forall x. (\\exists y.\ P(x,y) \\rightarrow
+   \\exists z.\ M(x,z))</imath>.
+9. Everybody in the dorm has a roommate he or she doesn't like:
+   <imath>\\forall x.\ (D(x) \\rightarrow \\exists y.\ (R(x,y) \\wedge \\neg
+   L(x, y)))</imath>.
+10. Nobody likes a sore loser: <imath>\\forall x.\ (S(x) \\rightarrow \\neg
+    \\exists y.\ L(y,x))</imath>. To say that nobody likes <imath>x</imath>, we
+    write <imath>\\neg (\\text{somebody likes }x)</imath>.

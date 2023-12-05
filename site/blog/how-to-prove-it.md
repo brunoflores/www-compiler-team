@@ -101,3 +101,19 @@ is an example of a statement that is always false, no matter what
 <imath>x</imath> is.
 
 ### Operations on Sets
+
+<pre class="display-math">
+\begin{theorem}
+For any sets A and B, (A $\cup$ B) $\setminus$  B $\subseteq$ A.
+\end{theorem}
+
+\begin{proof}
+We must show that if something is an element of (A $\cup$ B) $\setminus$ B, then
+it must also be an element of A. Suppose that x $\in$ (A $\cup$ B) $\setminus$
+B. This means that x $\in$ A $\cup$ B and x $\notin$ B, or in other words x
+$\in$ A $\vee$ x $\in$ B and x $\notin$ B. Note that these statements have the
+logical form P $\vee$ Q and $\neg$ Q. We can conclude that x $\in$ A must be
+true. Thus, anything that is an element of (A $\cup$ B) $\setminus$ B must be an
+element of A, so (A $\cup$ B) $\setminus$  B $\subseteq$ A.
+\end{proof}
+</pre>

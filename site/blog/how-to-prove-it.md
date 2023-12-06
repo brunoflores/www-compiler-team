@@ -211,3 +211,89 @@ Notice that if A and B are any two sets and $\mathcal{F}$ = \{A,\ B\}, then
 &\bigcup \mathcal{F} = A \cup B.
 \end{align*}
 </pre>
+
+### Proof Strategies
+
+How to figure out and write up the proof of a theorem will depend mostly on the
+logical form of the conclusion.
+
+<pre class="display-math">
+\setlength{\parindent}{15pt}
+
+\indent \textbf{To prove a goal of the form} $P \rightarrow Q$: \\
+\indent Assume $P$ is true and then prove $Q$. \\
+\\
+\textit{Scratch work} \\
+\\
+
+Before using strategy:
+
+\begin{table}
+\centering
+\begin{tabular}{c c}
+\underline{Givens} & \underline{Goal} \\
+--- & $P \rightarrow Q$ \\
+--- & \\
+\end{tabular}
+\end{table}
+
+After using strategy:
+
+\begin{table}
+\centering
+\begin{tabular}{c c}
+\underline{Givens} & \underline{Goal} \\
+--- & $Q$ \\
+--- & \\
+$P$ & \\
+\end{tabular}
+\end{table}
+
+\textit{Form of final proof:} \\
+\\
+\indent Suppose $P$. \\
+\indent \indent [Proof of $Q$ goes here.] \\
+\indent Therefore $P \rightarrow Q$.
+</pre>
+
+There is a second method for proving goals of the form <imath>P \\rightarrow
+Q</imath>.
+
+<pre class="display-math">
+\setlength{\parindent}{15pt}
+
+\indent \textbf{To prove a goal of the form} $P \rightarrow Q$: \\
+\indent Assume $Q$ is false and then prove that $P$ is false. \\
+\\
+\textit{Scratch work} \\
+\\
+
+Before using strategy:
+
+\begin{table}
+\centering
+\begin{tabular}{c c}
+\underline{Givens} & \underline{Goal} \\
+--- & $P \rightarrow Q$ \\
+--- & \\
+\end{tabular}
+\end{table}
+
+After using strategy:
+
+\begin{table}
+\centering
+\begin{tabular}{c c}
+\underline{Givens} & \underline{Goal} \\
+--- & $\neg P$ \\
+--- & \\
+$\neg Q$ & \\
+\end{tabular}
+\end{table}
+
+\textit{Form of final proof:} \\
+\\
+\indent Suppose $Q$ is false. \\
+\indent \indent [Proof of $\neg P$ goes here.] \\
+\indent Therefore $P \rightarrow Q$.
+</pre>

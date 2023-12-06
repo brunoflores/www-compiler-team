@@ -257,7 +257,11 @@ $P$ & \\
 </pre>
 
 There is a second method for proving goals of the form <imath>P \\rightarrow
-Q</imath>.
+Q</imath>. Any conditional statement <imath>P \\rightarrow Q</imath> is
+equivalent to its contrapositive <imath>\\neg Q \\rightarrow \\neg P</imath>
+(both have the same truth value).
+
+
 
 <pre class="display-math">
 \setlength{\parindent}{15pt}
@@ -296,4 +300,57 @@ $\neg Q$ & \\
 \indent Suppose $Q$ is false. \\
 \indent \indent [Proof of $\neg P$ goes here.] \\
 \indent Therefore $P \rightarrow Q$.
+</pre>
+
+#### Proofs Involving Negations and Conditionals
+
+<pre class="display-math">
+\setlength{\parindent}{15pt}
+
+\indent \textbf{To prove a goal of the form} $\neg P$: \\
+\indent If possible, re-express the goal in some other form and then use one of
+the proof strategies for this other goal form.
+</pre>
+
+If a goal of the form <imath>\\neg P</imath> cannot be re-expressed as a
+positive statement, do a _proof by contradiction_:
+
+<pre class="display-math">
+\setlength{\parindent}{15pt}
+
+\indent \textbf{To prove a goal of the form} $\neg P$: \\
+\indent Assume $P$ is true and try to reach a contradiction. One you have
+reached a contradiction, you can conclude that $P$ must be false. \\
+\\
+\textit{Scratch work} \\
+\\
+
+Before using strategy:
+
+\begin{table}
+\centering
+\begin{tabular}{c c}
+\underline{Givens} & \underline{Goal} \\
+--- & $\neg P$ \\
+--- & \\
+\end{tabular}
+\end{table}
+
+After using strategy:
+
+\begin{table}
+\centering
+\begin{tabular}{c c}
+\underline{Givens} & \underline{Goal} \\
+--- & Contradiction \\
+--- & \\
+$P$ & \\
+\end{tabular}
+\end{table}
+
+\textit{Form of final proof:} \\
+\\
+\indent Suppose $P$ is true. \\
+\indent \indent [Proof of contradiction goes here.] \\
+\indent Thus, $P$ is false.
 </pre>

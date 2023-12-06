@@ -174,3 +174,40 @@ _someone_, _everything_, _something_.
 
 > We can often re-express a negative statement as an equivalent, but easier to
 > understand, positive statement.
+
+1. <imath>A \\subseteq B.</imath> \
+   <imath>\\neg \\forall x.\ (x \\in A \\rightarrow x \\in B).</imath>
+   1. <imath>\\exists x.\ \\neg (x \\in A \\rightarrow x \\in B)</imath>
+      (quantifier negation law),
+   2. <imath>\\exists x.\ \\neg (x \\notin A \\vee x \\in B)</imath>
+      (conditional law),
+   3. <imath>\\exists x.\ (x \\in A \\wedge x \\notin B)</imath> (De Morgan's
+      law).
+
+Thus, to say that <imath>A \\nsubseteq B</imath> is to say "there's something in
+<imath>A</imath> that is not in <imath>B</imath>".
+
+<pre class="display-math">
+Suppose $\mathcal{F}$ is a family of sets. Then the \textit{intersection} and
+\textit{union} of $\mathcal{F}$ are the sets $\bigcap$ $\mathcal{F}$ and
+$\bigcup$ $\mathcal{F}$ defined as follows:
+
+\begin{align*}
+&\bigcap \mathcal{F} = \{ x\ |\ \forall A \in \mathcal{F}\ (x \in A) \}
+  = \{ x\ |\ \forall A\ (A \in \mathcal{F} \rightarrow x \in A) \}. \\
+&\bigcup \mathcal{F} = \{ x\ |\ \exists A \in \mathcal{F}\ (x \in A) \}
+  = \{ x\ |\ \exists A\ (A \in \mathcal{F} \wedge x \in A) \}.
+\end{align*}
+</pre>
+
+Intersection and union of family of sets are **generalizations** of the
+definitions of the intersection and union of two sets!
+
+<pre class="display-math">
+Notice that if A and B are any two sets and $\mathcal{F}$ = \{A,\ B\}, then
+
+\begin{align*}
+&\bigcap \mathcal{F} = A \cap B. \\
+&\bigcup \mathcal{F} = A \cup B.
+\end{align*}
+</pre>

@@ -144,22 +144,31 @@ The <imath>depth(\\texttt{t})</imath> is the smallest <imath>i</imath> such that
 \end{alignat*}
 </pre>
 
+### Semantic Styles
+
+
+
 ### Evaluation
 
 <pre class="display-math">
 \begin{alignat*}{3}
 & \textit{Syntax} &&& \\
-& \texttt{t} ::= &&& \qquad \textit{terms:} \\
+& \graybox{\texttt{t}} ::= &&& \qquad \textit{terms:} \\
 &&& \graybox{\texttt{true}} & \qquad \textit{constant true} \\
 &&& \graybox{\texttt{false}} & \qquad \textit{constant false} \\
-&&& \texttt{if t then t else t} & \qquad \textit{conditional} \\
+&&& \graybox{\texttt{if t then t else t}} & \qquad \textit{conditional} \\
 \\
-& \texttt{v} ::= &&& \qquad \textit{values:} \\
-&&& \texttt{true} & \qquad \textit{true value} \\
-&&& \texttt{false} & \qquad \textit{false value} \\
+& \graybox{\texttt{v}} ::= &&& \qquad \textit{values:} \\
+&&& \graybox{\texttt{true}} & \qquad \textit{true value} \\
+&&& \graybox{\texttt{false}} & \qquad \textit{false value} \\
 \end{alignat*}
+
 \begin{alignat*}{3}
-& \textit{Evaluation} &&& \\
+& \textit{Evaluation} &&& \boxed{\texttt{t $\rightarrow$ t$'$}} \\
+& \graybox{\texttt{if true then t$_2$ else t$_3$} $\rightarrow$ t$_2$} &&&
+\qquad \text{(E-IfTrue)} \\
+& \graybox{\texttt{if false then t$_2$ else t$_3$} $\rightarrow$ t$_3$} &&&
+\qquad \text{(E-IfFalse)} \\
 & \graybox{
     \inference{
       \texttt{t$_1$ $\rightarrow$ t$_1'$}
@@ -168,10 +177,6 @@ The <imath>depth(\\texttt{t})</imath> is the smallest <imath>i</imath> such that
       \texttt{if t$_1$ then t$_2$ else t$_3$} \\
       \rightarrow \texttt{if t$_1'$ then t$_2$ else t$_3$}
       \end{array}
-    }} &&& \\
+    }} &&& \qquad \text{(E-If)} \\
 \end{alignat*}
-</pre>
-
-<pre class="display-math">
-\boxed{\texttt{t $\rightarrow$ t$'$}}
 </pre>

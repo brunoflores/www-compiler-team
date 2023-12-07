@@ -146,7 +146,28 @@ The <imath>depth(\\texttt{t})</imath> is the smallest <imath>i</imath> such that
 
 ### Semantic Styles
 
+Similar to how the grammar is a precise definition of the syntax, the
+_semantics_ of a language precisely defines how terms are evaluated.
 
+Tree basic approaches to formalizing semantics:
+
+1. _Operational semantics_ specifies the behaviour of a programming language by
+   defining an _abstract machine_ for it. This "machine" uses the terms of the
+   language as its machine code. A _transition function_ gives, for each state,
+   the next state by performing a step of simplification on the term or declares
+   that the machine has halted. The _meaning_ of a term
+   <imath>\\texttt{t}</imath> is the final state that the machine reaches when
+   started with <imath>\\texttt{t}</imath> as its initial state.
+2. _Denotational semantics_ is a more abstract view of meaning. Instead of a
+   sequence of machine states, the meaning of a term is some mathematical
+   object. It consists of finding a collection of _semantic domains_ and then
+   defining an _interpretation function_ mapping terms into elements of these
+   domains (research area: _domain theory_).
+3. _Axiomatic semantics_ is a more direct approach. Instead of first defining
+   the behaviors of programs (by some operational or denotational semantics)
+   and then deriving laws from this definition, axiomatic methods take the laws
+   _themselves_ as the definition of the language. They focus on the process of
+   reasoning about programs.
 
 ### Evaluation
 

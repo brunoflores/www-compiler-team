@@ -1,7 +1,7 @@
 [settings]
 
 # Enable caching
-caching = true
+caching = false
 
 # Show build progress.
 verbose = true
@@ -285,6 +285,13 @@ parse=true
 widget = "preprocess_element"
 selector = "pre.display-math"
 command = "scripts/math.sh"
+action = "replace_element"
+parse = true
+
+[widgets.display-math-fresh]
+widget = "preprocess_element"
+selector = "pre.display-math-fresh"
+command = "scripts/math.sh --fresh"
 action = "replace_element"
 parse = true
 

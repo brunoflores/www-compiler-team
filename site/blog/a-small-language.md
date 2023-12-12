@@ -293,62 +293,48 @@ We write <imath>\\Gamma - \\Gamma(x)</imath> for the set of typing hypothesis
 obtained from <imath>\\Gamma</imath> by removing the typing hypothesis
 concerning <imath>x</imath> (if it exists).
 
-<pre class="display-math">
+<pre class="display-math-fresh">
 \begin{gather*}
 \inference{}{
   \Gamma \vdash \texttt{Const}\ n : \text{Number}
 }[(NUM)]
-
-\\ \\ \\
-
+\\ \\
 \inference{}{
   \Gamma \cup \{x : \sigma\} \vdash \texttt{Var}\ x : \sigma
 }[(TAUT)]
-
-\\ \\ \\
-
+\\ \\
 \inference{
   \Gamma \vdash e : \sigma \qquad \sigma' = \text{GenInstance}(\sigma)
 }
 {
   \Gamma \vdash e : \sigma'
 }[(INST)]
-
-\\ \\ \\
-
+\\ \\
 \inference{
   \Gamma \vdash e : \sigma \qquad \alpha \notin FV(\Gamma)
 }{
   \Gamma \vdash e : \forall \alpha. \sigma
 }[(GEN)]
-
-\\ \\ \\
-
+\\ \\
 \inference{
   \Gamma \vdash e_1 : \text{Number} \qquad \Gamma \vdash e_2 : \tau \qquad
   \Gamma \vdash e_3 : \tau
 }{
-  \Gamma \vdash \texttt{(if $e_1$ then $e_2$ else $e_3$ fi)} : \tau
+  \Gamma \vdash \texttt{(if e$_1$ then e$_2$ else e$_3$ fi)} : \tau
 }[(IF)]
-
-\\ \\ \\
-
+\\ \\
 \inference{
   \Gamma \vdash e_1 : \tau \rightarrow \tau' \qquad \Gamma \vdash e_2 : \tau
 }{
   \Gamma \vdash (e_1\ e_2) : \tau'
 }[(APP)]
-
-\\ \\ \\
-
+\\ \\
 \inference{
   (\Gamma - \Gamma(x)) \cup \{x : \tau\} \vdash e : \tau')
 }{
   \Gamma \vdash (\lambda x.\ e) : \tau \rightarrow \tau'
 }[(ABS)]
-
-\\ \\ \\
-
+\\ \\
 \inference{
   \Gamma \vdash e : \sigma \qquad (\Gamma - \Gamma(x)) \cup \{x : \sigma\}
   \vdash e' : \tau

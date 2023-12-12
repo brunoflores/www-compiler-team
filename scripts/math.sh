@@ -51,7 +51,7 @@ echo "\documentclass[preview=true]{standalone}
 echo "$in" >> .scripts-cache/${uq}.tex
 echo "\end{document}" >> .scripts-cache/${uq}.tex
 
-latex .scripts-cache/${uq}.tex > /dev/null
+latex .scripts-cache/${uq}.tex > .scripts-cache/${uq}.log
 mv ${uq}.dvi ${uq}.log ${uq}.aux .scripts-cache/
 
 # See https://dvisvgm.de/Manpage/

@@ -171,33 +171,115 @@ Tree basic approaches to formalizing semantics:
 
 ### Evaluation
 
+Abstract syntax
+
+<pre class="display-math-fresh">
+\begin{isabelle}
+\bterm
+\end{isabelle}
+</pre>
+
+Concrete syntax
+
 <pre class="display-math">
 \begin{alignat*}{3}
-& \textit{Syntax} &&& \\
 & \graybox{\texttt{t}} ::= &&& \qquad \textit{terms:} \\
 &&& \graybox{\texttt{true}} & \qquad \textit{constant true} \\
 &&& \graybox{\texttt{false}} & \qquad \textit{constant false} \\
-&&& \graybox{\texttt{if t then t else t}} & \qquad \textit{conditional} \\
-\\
-& \graybox{\texttt{v}} ::= &&& \qquad \textit{values:} \\
-&&& \graybox{\texttt{true}} & \qquad \textit{true value} \\
-&&& \graybox{\texttt{false}} & \qquad \textit{false value} \\
+&&& \graybox{\texttt{if t then t else t}} & \qquad \textit{conditional}
 \end{alignat*}
+</pre>
 
+Values are a subset of terms. They are possible final results of evaluation:
+
+<pre class="display-math-fresh">
+\begin{isabelle}
+\begin{gather*}
+\graybox{\isValueBTrue} \qquad
+\graybox{\isValueBFalse}
+\end{gather*}
+\end{isabelle}
+</pre>
+
+Evaluation relation on terms: "<imath>\\texttt{t}</imath> evalutes to
+<imath>\\texttt{t'}</imath> in one step".
+
+<pre class="display-math-fresh">
+\begin{isabelle}
 \begin{alignat*}{3}
-& \textit{Evaluation} &&& \boxed{\texttt{t $\rightarrow$ t$'$}} \\
-& \graybox{\texttt{if true then t$_2$ else t$_3$} $\rightarrow$ t$_2$} &&&
-\qquad \text{(E-IfTrue)} \\
-& \graybox{\texttt{if false then t$_2$ else t$_3$} $\rightarrow$ t$_3$} &&&
-\qquad \text{(E-IfFalse)} \\
-& \graybox{
-    \inference{
-      \texttt{t$_1$ $\rightarrow$ t$_1'$}
-    }{
-      \begin{array}{@{}c@{}}
-      \texttt{if t$_1$ then t$_2$ else t$_3$} \\
-      \rightarrow \texttt{if t$_1'$ then t$_2$ else t$_3$}
-      \end{array}
-    }} &&& \qquad \text{(E-If)} \\
+& \graybox{\EIfTrue} &&& \boxed{\texttt{t $\rightarrow$ t$'$}} \\
+& \graybox{\EIfFalse} &&& \\
+& \graybox{\EIf} &&& \\
 \end{alignat*}
+\end{isabelle}
+</pre>
+
+Evaluation is defined as two axioms and one inference rule.
+
+> What these rules do _not_ say is just as important as what they do say.
+
+Constants <imath>\\texttt{true}</imath> and <imath>\\texttt{false}</imath> do
+not evaluate to anything. The interplay between the rules determines a
+particular _evaluation strategy_.
+
+Rules <imath>\\textsf{E-IfTrue}</imath> and
+<imath>\\textsf{E-IfFalse}</imath> do the real work of evaluation (_computation
+rules_), while <imath>\\textsf{E-If}</imath> helps determine where the work is
+to be done (_congruence rules_).
+
+<pre class="display-math-fresh">
+\begin{isabelle}
+\determinacy
+\end{isabelle}
+</pre>
+
+A term t is is normal form if no evaluation rule applies to it:
+
+<pre class="display-math-fresh">
+\begin{isabelle}
+\normalFormDef
+\end{isabelle}
+</pre>
+
+Every value is in normal form:
+
+<pre class="display-math-fresh">
+\begin{isabelle}
+\valueImpNormal
+\end{isabelle}
+</pre>
+
+In this simple language, the converse is also true: every normal form is a
+value.
+
+<pre class="display-math-fresh">
+\begin{isabelle}
+\normalImpValue
+\end{isabelle}
+</pre>
+
+**_Run-time errors_**: The above theorem is not the case in general. When normal
+forms do not evaluate to a value, we might have a _run-time error_.
+
+The _multi-step evaluation_ relation <imath>\\rightarrow^\\star</imath> is the
+reflexive, transitive closure of one-step evaluation. That is, it is the
+smallest relation such that:
+
+1. if <imath>\\texttt{t} \\rightarrow \\texttt{t}^\\prime</imath>, then
+   <imath>\\texttt{t} \\rightarrow^\\star \\texttt{t}^\\prime</imath>, and
+2. <imath>\\texttt{t} \\rightarrow^\\star \\texttt{t}</imath> for all
+   <imath>\\texttt{t}</imath>, and
+3. if <imath>\\texttt{t} \\rightarrow^\\star \\texttt{t}^\\prime</imath> and
+   <imath>\\texttt{t}^\\prime \\rightarrow^\\star \\texttt{t}^{\\prime
+   \\prime}</imath>, then
+   <imath>\\texttt{t} \\rightarrow^\\star \\texttt{t}^{\\prime \\prime}</imath>.
+
+As inference rules:
+
+<pre class="display-math-fresh">
+\begin{isabelle}
+\begin{gather*}
+\graybox{\eOnce} \qquad \graybox{\eSelf} \qquad \graybox{\eTransitive}
+\end{gather*}
+\end{isabelle}
 </pre>

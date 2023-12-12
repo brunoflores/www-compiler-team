@@ -293,7 +293,7 @@ We write <imath>\\Gamma - \\Gamma(x)</imath> for the set of typing hypothesis
 obtained from <imath>\\Gamma</imath> by removing the typing hypothesis
 concerning <imath>x</imath> (if it exists).
 
-<pre class="display-math-fresh">
+<pre class="display-math">
 \begin{gather*}
 \inference{}{
   \Gamma \vdash \texttt{Const}\ n : \text{Number}

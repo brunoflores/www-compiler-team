@@ -120,9 +120,7 @@ $\text{S}_i$ as follows:
                         $\in$}\ \text{S}_1 \texttt{\}} \\
          &\ \cup \quad \texttt{\{if t$_1$ then t$_2$ else t$_3$ | t$_1$, t$_2$,
          t$_3$ $\in$}\ \text{S}_i \texttt{\}}. \\ \\
-
 \text{Finally, let} \\
-
 \text{S} =& \bigcup_i{S_i}.
 \end{align*}
 </pre>

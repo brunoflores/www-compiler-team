@@ -1,6 +1,6 @@
 [settings]
 
-# Enable caching
+# Enable caching.
 caching = false
 
 # Show build progress.

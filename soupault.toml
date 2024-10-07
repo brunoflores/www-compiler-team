@@ -89,7 +89,7 @@ tags = { selector = ".post-tag", select_all = true }
 # reading_time = { selector = "#reading-time" }
 
 [index.views.blog-index]
-# Insert generated index into an element that matches "#blog-index" selector.
+# Insert generated index into an element that matches the selector.
 index_selector = "#blog-entries"
 
 # Only extract metadata from pages in site/blog/*
